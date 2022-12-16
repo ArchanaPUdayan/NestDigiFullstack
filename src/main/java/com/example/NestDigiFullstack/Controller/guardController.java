@@ -28,6 +28,10 @@ public class guardController {
     public String delete(){
         return "delete page";
     }
+    @PostMapping("/searchGuard")
+    public String search(){
+        return "search page";
+    }
 
 
 }

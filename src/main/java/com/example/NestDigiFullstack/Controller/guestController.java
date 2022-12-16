@@ -68,11 +68,12 @@ public class guestController {
 
         return (List<Map< String,String>>) dao.todayLog1Maps(String.valueOf(ld1));
     }
-
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/dateLogGuest",consumes = "application/json",produces = "application/json")
     public List<Map<String,String>> GuestLog(@RequestBody logHours log){
         return  dao.todayLog1Maps(log.getDate());
     }
+
+
 
 }

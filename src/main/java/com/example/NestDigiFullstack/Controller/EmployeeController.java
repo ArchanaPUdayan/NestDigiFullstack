@@ -33,5 +33,8 @@ public class EmployeeController {
     public String Deletepage(){
         return "Welcome to my delete page";
    }
+@PostMapping("/viewEmpLeaves")
+    public String viewLeaves()
+    return "Welcome to my view page";
 
 }

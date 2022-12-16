@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Map;
 
-public interface guestDao extends CrudRepository<Guest,Integer> {
+public interface GuestDao extends CrudRepository<Guest,Integer> {
 
 
     @Modifying

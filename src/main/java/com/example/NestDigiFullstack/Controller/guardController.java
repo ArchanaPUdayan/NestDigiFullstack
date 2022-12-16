@@ -1,37 +1,61 @@
 package com.example.NestDigiFullstack.Controller;
 
+import com.example.NestDigiFullstack.Model.Guard;
+import com.example.NestDigiFullstack.dao.GuardDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
 
 
 @RestController
 
 public class guardController {
     @Autowired
+    GuardDao dao2;
 
-    @PostMapping("/addGuard")
-    public String add(){
-        return "add page";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/addGuard",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> add(@RequestBody Guard g){
+        HashMap<String,String> map = new HashMap<>();
+        System.out.println(g.getGuardnumber());
+        dao2.save(g);
+        map.put("status","success");
+        return map;
     }
-    @PostMapping("/loginGuard")
-    public String login(){
-        return "login page";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/loginGuard",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> login(@RequestBody Guard g){
+        HashMap<String, String> map = new HashMap<String, String>();
+        List<Guard> emp= dao2.passwordCheck(g.getUserName(),g.getPassword());
+        if (emp.size() != 0) {
+            map.put("guardnumber",String.valueOf( emp.get(0).getGuardnumber()));
+            map.put("status","success");
+        }else {
+            map.put("status","failed");
+        }
+        return map;
     }
+    @CrossOrigin(origins = "*")
     @GetMapping("/viewGuard")
-    public String view(){
-        return "view page";
+    public List<Guard> viewGuard(){
+        return (List<Guard>) dao2.findAll();
     }
-    @PostMapping("/deleteGuard")
-    public String delete(){
-        return "delete page";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/deleteGuard",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> deleteGuard(@RequestBody Guard gard) {
+        HashMap<String, String> map = new HashMap<>();
+        dao2.deleteGuard(gard.getId());
+        map.put("status","success");
+        return map;
     }
-    @PostMapping("/searchGuard")
-    public String search(){
-        return "search page";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/searchGuard",consumes = "application/json",produces = "application/json")
+    public List<Guard> search(@RequestBody Guard gard){
+        return (List<Guard>) dao2.searchGuards(gard.getGuardnumber());
     }
+
 
 
 }

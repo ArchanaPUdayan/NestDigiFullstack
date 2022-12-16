@@ -15,7 +15,7 @@ public class Guard {
     private int id;
     private int Guardnumber;
     private String name;
-    private double salary;
+    private String salary;
     private String mobileNumber;
     private String userName;
     private String password;
@@ -23,7 +23,7 @@ public class Guard {
     public Guard() {
     }
 
-    public Guard(int id, int guardnumber, String name, double salary, String mobileNumber, String userName, String password) {
+    public Guard(int id, int guardnumber, String name, String salary, String mobileNumber, String userName, String password) {
         this.id = id;
         Guardnumber = guardnumber;
         this.name = name;
@@ -57,11 +57,11 @@ public class Guard {
         this.name = name;
     }
 
-    public double getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 

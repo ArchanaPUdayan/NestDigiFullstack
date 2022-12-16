@@ -25,5 +25,9 @@ public class EmployeeController {
     public String Viewpage(){
         return "Welcome to my view page";
     }
+   @PostMapping("/search")
+    public String Searchpage(){
+        return "Welcome tomy search page";
+   }
 
 }

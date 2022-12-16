@@ -29,5 +29,9 @@ public class EmployeeController {
     public String Searchpage(){
         return "Welcome tomy search page";
    }
+   @PostMapping("/delete")
+    public String Deletepage(){
+        return "Welcome to my delete page";
+   }
 
 }

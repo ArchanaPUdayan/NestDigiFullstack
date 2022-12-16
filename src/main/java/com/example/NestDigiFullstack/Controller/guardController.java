@@ -24,6 +24,10 @@ public class guardController {
     public String view(){
         return "view page";
     }
+    @PostMapping("/deleteGuard")
+    public String delete(){
+        return "delete page";
+    }
 
 
 }

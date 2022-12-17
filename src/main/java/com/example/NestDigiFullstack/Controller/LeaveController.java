@@ -21,15 +21,15 @@ public class LeaveController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/addLeaves",consumes = "application/json",produces = "application/json")
-    public HashMap<String, String> addLeaves(@RequestBody Leave leave){
+    public HashMap<String, String> addLeaves(@RequestBody Leave leaves){
 
         HashMap<String,String> map = new HashMap<>();
-        System.out.println(leave.toString());
-        LocalDate from = LocalDate.parse(String.valueOf(leave.getFrom()));
-        LocalDate to = LocalDate.parse(String.valueOf(leave.getTo()));
+        System.out.println(leaves.toString());
+       LocalDate from=LocalDate.parse(String.valueOf(leaves.getFrom()));
+        LocalDate to=LocalDate.parse(String.valueOf(leaves.getTo()));
         long diffInDays = ChronoUnit.DAYS.between(from, to);
-        leave.setDays((int) diffInDays+1);
-        dao.save(leave);
+        leaves.setDays((int) diffInDays+1);
+        dao.save(leaves);
         map.put("status","success");
         return map;
     }
@@ -46,19 +46,19 @@ public class LeaveController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/searchLeaves",consumes = "application/json",produces = "application/json")
-    public List<Leave> searchLeaves(@RequestBody Leave leave){
+    public List<Leave> searchLeaves(@RequestBody Leave leaves){
 
-        System.out.println(leave.getEmpid());
-        return (List<Leave>) dao.searchLeaves(leave.getEmpid());
+        System.out.println(leaves.getEmpid());
+        return (List<Leave>) dao.searchLeaves(leaves.getEmpid());
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/editLeaves",consumes = "application/json",produces = "application/json")
-    public HashMap<String, String> editLeaves(@RequestBody Leave leave){
+    public HashMap<String, String> editLeaves(@RequestBody Leave leaves){
 
         HashMap<String,String> map = new HashMap<>();
-        System.out.println(leave.getStatus()+"  "+leave.getId()+"  "+leave.getRemarks());
-        dao.updateLeave(leave.getStatus(),leave.getRemarks(),leave.getId());
+        System.out.println(leaves.getStatus()+"  "+leaves.getId()+"  "+leaves.getRemarks());
+        dao.updateLeave(leaves.getStatus(),leaves.getRemarks(),leaves.getId());
         map.put("status","success");
         return map;
     }

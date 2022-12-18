@@ -60,4 +60,5 @@ public class LogController {
         return  dao.todayLog1Maps(log.getDate());
     }
 
+
 }
